@@ -9,3 +9,30 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Catalog {
+  idCatalog     Int       @id @default(autoincrement())
+  typeCatalog   String
+  nameCatalog   String
+  creationDate  DateTime  @default(now())
+  modifyDate    DateTime  @default(now())
+  statusCatalog Boolean   @default(true)
+  account       Account[]
+}
+
+model Account {
+  idAccount          Int      @id @default(autoincrement())
+  userName           String   @unique
+  password           String
+  nameOne            String
+  nameSecond         String
+  lastNameOne        String
+  lasNameSecond      String
+  typeIdentification Int
+  numIdentification  String   @unique
+  birthdate          DateTime
+  creationDate       DateTime @default(now())
+  modifyDate         DateTime @default(now())
+  statusAccount      Boolean  @default(true)
+  catalog            Catalog  @relation(fields: [typeIdentification], references: [idCatalog])
+}
