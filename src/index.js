@@ -23,7 +23,5 @@ app.use('/api/', catalogRoutes)
 app.use('/api/', permissionRoutes)
 
 
-
-
 app.listen(process.env.PORT)
 console.log('Backend ACTIVO - OrenTronic Port:',process.env.PORT,"by FortiGuard App")

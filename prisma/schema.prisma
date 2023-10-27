@@ -26,14 +26,14 @@ model Account {
   nameSecond         String
   lastNameOne        String
   lasNameSecond      String
-  email              String     @unique
   typeIdentification Int
   numIdentification  String     @unique
-  typeRole           Int
   birthdate          DateTime
   creationDate       DateTime   @default(now())
   modifyDate         DateTime   @default(now())
   statusAccount      Boolean    @default(true)
+  email              String     @unique
+  typeRole           Int
   catalog            Catalog    @relation(fields: [typeIdentification], references: [idCatalog])
   permision          Permission @relation(fields: [typeRole], references: [idPermission])
 }
@@ -46,6 +46,6 @@ model Permission {
   creationDate     DateTime  @default(now())
   modifyDate       DateTime  @default(now())
   statusPermission Boolean   @default(true)
-  catalog          Catalog   @relation(fields: [idRole], references: [idCatalog])
   account          Account[]
+  catalog          Catalog   @relation(fields: [idRole], references: [idCatalog])
 }
